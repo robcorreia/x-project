@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
+import { useAuth } from "../../contexts/AuthContext";
 import { Form, LoginContainer } from "./styles";
 
 interface LoginForm {
@@ -28,6 +29,7 @@ const schema = yup
   .required();
 
 function Login() {
+  const { login, user } = useAuth();
   const navigate = useNavigate();
 
   const {
@@ -38,9 +40,13 @@ function Login() {
     resolver: yupResolver(schema),
   });
   const onSubmit = (data: LoginForm) => {
+    login(data);
     navigate("/home");
   };
 
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
   return (
     <LoginContainer>
       <h2>Informe seus dados</h2>

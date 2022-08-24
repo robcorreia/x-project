@@ -1,8 +1,12 @@
 import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
+import { Header } from "../../components/Header";
+import { useAuth } from "../../contexts/AuthContext";
 import { HomeContainer } from "./styles";
 
 function Home() {
+  const { user } = useAuth();
+
   const userActive = sessionStorage.getItem("user");
 
   useEffect(() => {
@@ -12,7 +16,8 @@ function Home() {
   }, [userActive]);
   return (
     <HomeContainer>
-      <h2>Home</h2>
+      <Header />
+      <h2>Bem vindo {user.email}</h2>
     </HomeContainer>
   );
 }
