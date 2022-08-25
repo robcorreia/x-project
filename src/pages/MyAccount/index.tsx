@@ -7,7 +7,7 @@ export function MyAccount() {
     <MyAccountContainer>
       <h2>Meus dados</h2>
       <p>
-        <strong>E-mail: </strong>
+        <strong>Email: </strong>
         {user.email}
       </p>
     </MyAccountContainer>
