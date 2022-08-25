@@ -1,8 +1,5 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable @typescript-eslint/naming-convention */
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SignIn } from "phosphor-react";
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
@@ -29,7 +26,7 @@ const schema = yup
   .required();
 
 function Login() {
-  const { login, user } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const {
@@ -41,20 +38,18 @@ function Login() {
   });
   const onSubmit = (data: LoginForm) => {
     login(data);
-    navigate("/home");
+    navigate("/");
   };
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
   return (
     <LoginContainer>
-      <h2>Informe seus dados</h2>
       <Form onSubmit={handleSubmit(onSubmit)}>
+        <h2>Informe seus dados</h2>
+
         <input
+          autoFocus
           placeholder="Digite seu e-mail"
           {...register("email")}
-          // supportMessage=
         />
         {errors.email?.message && (
           <span className="supportMessage">{errors.email.message}</span>

@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
@@ -11,11 +10,11 @@ function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyle />
-      <BrowserRouter>
-        <AuthProvider>
+      <AuthProvider>
+        <BrowserRouter>
           <AppRoutes />
-        </AuthProvider>
-      </BrowserRouter>
+        </BrowserRouter>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

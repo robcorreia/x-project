@@ -1,21 +1,21 @@
 import { SignOut } from "phosphor-react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { HeaderComponent } from "./styles";
-import logoImg from "../../assets/logo.svg";
 
 export function Header() {
   const { logout } = useAuth();
 
   return (
     <HeaderComponent>
-      <img className="brand" src={logoImg} alt="" />
+      <strong className="brand">Brand</strong>
       <nav>
         <ul>
           <li>
-            <a href="/">Dados</a>
+            <Link to="/products">Produtos</Link>
           </li>
           <li>
-            <a href="/">Minha conta</a>
+            <Link to="/my-account">Minha Conta</Link>
           </li>
           <li>
             <button type="button" onClick={logout}>

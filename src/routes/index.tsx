@@ -3,21 +3,23 @@ import { Routes, Route } from "react-router-dom";
 
 import Home from "../pages/Home";
 import Login from "../pages/Login";
-import RequireAuth from "./PrivateRoute";
+import { MyAccount } from "../pages/MyAccount";
+import { NotFoundPage } from "../pages/NotFound";
+import { Products } from "../pages/Products";
+import PrivateRoutes from "./PrivateRoute";
 
 function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
-      <Route
-        path="home"
-        element={
-          <RequireAuth>
-            <Home />
-          </RequireAuth>
-        }
-      />
-      <Route path="*" element={<Login />} />
+      <Route element={<PrivateRoutes />}>
+        <Route path="/" element={<Home />}>
+          <Route index element={<MyAccount />} />
+          <Route path="products" element={<Products />} />
+          <Route path="my-account" element={<MyAccount />} />
+        </Route>
+      </Route>
+      <Route path="/login" element={<Login />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }

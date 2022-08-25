@@ -1,6 +1,6 @@
 ## Objetivo do Projeto
 
-Projeto com tela de login passando CPF como informação com suas validações de dados.
+Projeto desenvolvido com o objetivo de renderizar uma lista de dados com grande escala de informações deixando o mais performático possível
 
 ## Techs usadas
 
@@ -14,4 +14,5 @@ O projeto foi desenvolvido com as tecnologias:
 - Styled-Components
 - React Hook Form
 - Yup
+
 # x-project

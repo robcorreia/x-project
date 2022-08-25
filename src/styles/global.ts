@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
 
   :focus {
       outline: 0;
-      box-shadow: 0 0 0 2px ${(props) => props.theme["red-100"]}
+      /* box-shadow: 0 0 0 2px ${(props) => props.theme["red-100"]} */
   }
 
   body {
@@ -21,5 +21,12 @@ export const GlobalStyle = createGlobalStyle`
 
   body, input, textarea, button {
     font: 400 1rem Roboto, sans-serif;
+  }
+
+  @media screen and (max-width: 600px) {
+    body, input, textarea, button {
+      font-size: 87.5%;
+
+    }
   }
 `;

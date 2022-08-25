@@ -1,27 +1,24 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-import React, { ReactNode } from "react";
-import { Navigate, useLocation } from "react-router-dom";
-
+import { useEffect } from "react";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import { getUserSessionStorage } from "../utils/sessionStorage";
 
-interface RequireAuthProps {
-  children: ReactNode;
-}
+export default function PrivateRoutes() {
+  const navigate = useNavigate();
+  const { setUser } = useAuth();
 
-function RequireAuth({ children }: RequireAuthProps) {
-  const location = useLocation();
-  const auth = useAuth();
+  useEffect(() => {
+    const userActived = getUserSessionStorage();
+    if (userActived) {
+      setUser(userActived);
+      navigate("/");
+    }
+  }, []);
+  const { user } = useAuth();
 
-  return (
-    <>
-      {" "}
-      {!auth.user.email && !auth.user.password ? (
-        <Navigate to="/" state={{ path: location.pathname }} />
-      ) : (
-        children
-      )}
-    </>
+  return user.email && user.password ? (
+    <Outlet />
+  ) : (
+    <Navigate to="/login" replace />
   );
 }
-
-export default RequireAuth;

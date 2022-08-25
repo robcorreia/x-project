@@ -22,6 +22,11 @@ export const Form = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  background-color: ${(props) => props.theme["gray-900"]};
+  padding: 2rem;
+  border-radius: 4px;
   gap: 0.5rem;
 
   .supportMessage {

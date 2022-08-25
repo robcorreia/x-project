@@ -1,3 +1,4 @@
+import { ClockCounterClockwise } from "phosphor-react";
 import styled from "styled-components";
 
 export const HeaderComponent = styled.header`
@@ -8,8 +9,15 @@ export const HeaderComponent = styled.header`
   align-items: center;
   justify-content: space-between;
 
+  @media screen and (max-width: 600px) {
+    height: auto;
+    flex-direction: column;
+  }
+
   .brand {
-    width: 5rem;
+    color: ${(props) => props.theme["red-300"]};
+    font-size: 1.2rem;
+    text-transform: uppercase;
   }
 
   ul {
