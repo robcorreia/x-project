@@ -1,22 +1,28 @@
 import { DataContainer, DataContent, SearchForm, GridHeader } from "./styles";
-import { useAuth } from "../../contexts/AuthContext";
 import { FixedSizeList } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { MagnifyingGlass } from "phosphor-react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useCallback, useState } from "react";
+import { getProducts, setData } from "../../store/Products.store";
+import { useAppDispatch, useAppSelector } from "../../hooks/useReducers";
 
 const searchFormSchema = yup.object({
   query: yup.string(),
 });
-
 interface SearchFormInput {
   query: string;
 }
 
 export function Products() {
-  const { data, fetchData } = useAuth();
+  const dispatch = useAppDispatch();
+  const {
+    payload: {
+      products: { data },
+    },
+  } = useAppSelector(setData);
 
   const {
     register,
@@ -26,10 +32,12 @@ export function Products() {
     resolver: yupResolver(searchFormSchema),
   });
 
+  const fetchData = useCallback(async (query?: string) => {
+    await dispatch(getProducts(query));
+  }, []);
+
   async function handleSearchSubmitForm(data: SearchFormInput) {
     await fetchData(data.query);
-
-    console.log(data);
   }
 
   const Row = ({
