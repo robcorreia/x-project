@@ -28,6 +28,14 @@ O servidor backend fake iniciará na porta:3333 - acesse
 
     <http://localhost:3000/data>
 
+Para fazer login na aplicação você deve passar um email valido, Exemplo:
+
+    user@email.com
+
+E uma senha de no mínimo 6 dígitos, Exemplo:
+
+    user1234
+
 # Tecnologias utitilizadas
 
 - [Reactjs](https://pt-br.reactjs.org/)
